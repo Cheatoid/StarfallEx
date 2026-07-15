@@ -7,6 +7,7 @@ local math_floor = math.floor
 local math_min = math.min
 local math_max = math.max
 local bit_rshift = bit.rshift
+local string_char = string.char
 
 --- StringStream type
 -- @name StringStream
@@ -405,7 +406,7 @@ end
 -- @param number byte The byte to read until (in number form)
 -- @return string The string of bytes read
 function ss_methods:readUntil(byte)
-	byte = string.char(byte)
+	byte = string_char(byte)
 	local ret = {}
 	for i=self.index, #self do
 		local cur = self[self.index]
@@ -443,7 +444,7 @@ end
 function ss_methods:writeInt8(x)
 	if x==math_huge or x==-math_huge or x~=x then error("Can't convert error float to integer!", 2) end
 	if x < 0 then x = x + 0x100 end
-	self:write(string.char(x%0x100))
+	self:write(string_char(x%0x100))
 end
 
 --- Writes a unsigned byte to the buffer and advances the buffer pointer.
@@ -457,12 +458,12 @@ ss_methods.writeUInt8 = ss_methods.writeInt8
 function ss_methods:writeInt16(x)
 	if x==math_huge or x==-math_huge or x~=x then error("Can't convert error float to integer!", 2) end
 	if x < 0 then x = x + 0x10000 end
-	self:write(string.char(x%0x100, bit_rshift(x, 8)%0x100))
+	self:write(string_char(x%0x100, bit_rshift(x, 8)%0x100))
 end
 function ss_methods_big:writeInt16(x)
 	if x==math_huge or x==-math_huge or x~=x then error("Can't convert error float to integer!", 2) end
 	if x < 0 then x = x + 0x10000 end
-	self:write(string.char(bit_rshift(x, 8)%0x100, x%0x100))
+	self:write(string_char(bit_rshift(x, 8)%0x100, x%0x100))
 end
 
 --- Writes a unsigned short to the buffer and advances the buffer pointer.
@@ -476,12 +477,12 @@ ss_methods.writeUInt16 = ss_methods.writeInt16
 function ss_methods:writeInt32(x)
 	if x==math_huge or x==-math_huge or x~=x then error("Can't convert error float to integer!", 2) end
 	if x < 0 then x = x + 0x100000000 end
-	self:write(string.char(x%0x100, bit_rshift(x, 8)%0x100, bit_rshift(x, 16)%0x100, bit_rshift(x, 24)%0x100))
+	self:write(string_char(x%0x100, bit_rshift(x, 8)%0x100, bit_rshift(x, 16)%0x100, bit_rshift(x, 24)%0x100))
 end
 function ss_methods_big:writeInt32(x)
 	if x==math_huge or x==-math_huge or x~=x then error("Can't convert error float to integer!", 2) end
 	if x < 0 then x = x + 0x100000000 end
-	self:write(string.char(bit_rshift(x, 24)%0x100, bit_rshift(x, 16)%0x100, bit_rshift(x, 8)%0x100, x%0x100))
+	self:write(string_char(bit_rshift(x, 24)%0x100, bit_rshift(x, 16)%0x100, bit_rshift(x, 8)%0x100, x%0x100))
 end
 
 --- Writes a unsigned long to the buffer and advances the buffer pointer.
@@ -493,21 +494,21 @@ ss_methods.writeUInt32 = ss_methods.writeInt32
 --- Writes a 4 byte IEEE754 float to the byte stream and advances the buffer pointer.
 -- @param number x The float to write
 function ss_methods:writeFloat(x)
-	self:write(string.char(PackIEEE754Float(x)))
+	self:write(string_char(PackIEEE754Float(x)))
 end
 function ss_methods_big:writeFloat(x)
 	local a,b,c,d = PackIEEE754Float(x)
-	self:write(string.char(d,c,b,a))
+	self:write(string_char(d,c,b,a))
 end
 
 --- Writes a 8 byte IEEE754 double to the byte stream and advances the buffer pointer.
 -- @param number x The double to write
 function ss_methods:writeDouble(x)
-	self:write(string.char(PackIEEE754Double(x)))
+	self:write(string_char(PackIEEE754Double(x)))
 end
 function ss_methods_big:writeDouble(x)
 	local a,b,c,d,e,f,g,h = PackIEEE754Double(x)
-	self:write(string.char(h,g,f,e,d,c,b,a))
+	self:write(string_char(h,g,f,e,d,c,b,a))
 end
 
 --- Writes a string to the buffer putting a null at the end and advances the buffer pointer.
@@ -517,23 +518,66 @@ function ss_methods:writeString(str)
 	self:write("\0")
 end
 
+-- Total number of bytes a single edict value occupies in the stream
+local EdictBytes = math.ceil(MAX_EDICT_BITS / 8)
+
+--- Writes an entity index using MAX_EDICT_BITS and advances the buffer pointer.
+-- @name ss_methods.writeEdict
+-- @class function
+-- @param number index The entity index to write
+function ss_methods:writeEdict(index)
+	local bytes = {}
+	for i=0, EdictBytes-1 do
+		bytes[i+1] = string_char(bit_rshift(index, i * 8) % 0x100)
+	end
+	self:write(table.concat(bytes))
+end
+function ss_methods_big:writeEdict(index)
+	local bytes = {}
+	for i=EdictBytes-1, 0, -1 do
+		bytes[EdictBytes-i] = string_char(bit_rshift(index, i * 8) % 0x100)
+	end
+	self:write(table.concat(bytes))
+end
+
+--- Reads an entity index using MAX_EDICT_BITS from the byte stream and advances the buffer pointer.
+-- @name ss_methods.readEdict
+-- @class function
+-- @return number The entity index
+function ss_methods:readEdict()
+	local data = self:read(EdictBytes)
+	local value = 0
+	for i = EdictBytes, 1, -1 do
+		value = value * 0x100 + string.byte(data, i)
+	end
+	return value
+end
+function ss_methods_big:readEdict()
+	local data = self:read(EdictBytes)
+	local value = 0
+	for i = 1, EdictBytes do
+		value = value * 0x100 + string.byte(data, i)
+	end
+	return value
+end
+
 --- Writes an entity to the buffer and advances the buffer pointer.
 -- @name ss_methods.writeEntity
 -- @class function
 -- @param Entity e The entity to be written
 local function writeEntity(self, instance, e)
 	local ent = instance.Types.Entity.Unwrap(e)
-	self:writeInt16(ent:EntIndex())
+	self:writeEdict(ent:EntIndex())
 	self:writeInt32(ent:GetCreationID())
 end
-	
+
 --- Reads an entity from the byte stream and advances the buffer pointer.
 -- @name ss_methods.readEntity
 -- @class function
 -- @param function? callback (Client only) optional callback to be ran whenever the entity becomes valid; returns nothing if this is used. The callback passes the entity if it succeeds or nil if it fails.
 -- @return Entity The entity that was read
 local function readEntity(self, instance, callback)
-	local index = self:readUInt16()
+	local index = self:readEdict()
 	local creationindex = self:readUInt32()
 	if callback ~= nil and CLIENT then
 		checkluatype(callback, TYPE_FUNCTION)

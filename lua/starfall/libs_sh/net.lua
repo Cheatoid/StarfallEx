@@ -161,12 +161,15 @@ local function net_reset()
 end
 
 local function net_write(unreliable)
-	net.Start("SF_netmessage", unreliable)
-	net.WriteEntity(instance.entity)
-	for _, v in ipairs(netData) do
-		v[1](unpack(v, 3))
+	if net.Start("SF_netmessage", unreliable) then
+		net.WriteEntity(instance.entity)
+		for i = 1, #netData do
+			local v = netData[i]
+			v[1](unpack(v, 3))
+		end
+		net_reset()
+		return true
 	end
-	net_reset()
 end
 
 --- Starts the net message
@@ -206,16 +209,16 @@ function net_library.send(target, unreliable)
 	end
 
 	netBurst:use(instance.player, netSize)
-	net_write(unreliable)
-
-	if SERVER then
-		if newtarget then
-			net.Send(newtarget)
+	if net_write(unreliable) then
+		if SERVER then
+			if newtarget then
+				net.Send(newtarget)
+			else
+				net.Broadcast()
+			end
 		else
-			net.Broadcast()
+			net.SendToServer()
 		end
-	else
-		net.SendToServer()
 	end
 
 	instance:checkCpu()
@@ -231,8 +234,9 @@ if SERVER then
 		pos = vunwrap1(pos)
 
 		netBurst:use(instance.player, netSize)
-		net_write(unreliable)
-		net.SendPVS(pos)
+		if net_write(unreliable) then
+			net.SendPVS(pos)
+		end
 		instance:checkCpu()
 	end
 end
@@ -586,7 +590,7 @@ end
 function net_library.writeEntity(t)
 	if not netStarted then SF.Throw("net message not started", 2) end
 	local ent = eunwrap(t)
-	write{net.WriteUInt, 16, ent:EntIndex(), 16}
+	write{net.WriteUInt, MAX_EDICT_BITS, ent:EntIndex(), MAX_EDICT_BITS}
 	write{net.WriteUInt, 32, ent:GetCreationID(), 32}
 end
 
@@ -595,7 +599,7 @@ end
 -- @param function? callback (Client only) optional callback to be ran whenever the entity becomes valid; returns nothing if this is used. The callback passes the entity if it succeeds or nil if it fails.
 -- @return Entity? The entity that was read or nil if callback used
 function net_library.readEntity(callback)
-	local index = net.ReadUInt(16)
+	local index = net.ReadUInt(MAX_EDICT_BITS)
 	local creationindex = net.ReadUInt(32)
 	if callback ~= nil and CLIENT then
 		checkluatype(callback, TYPE_FUNCTION)
