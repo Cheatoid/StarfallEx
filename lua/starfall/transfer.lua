@@ -246,7 +246,7 @@ else
 		net.SendToServer()
 	end
 
-	
+
 	function SF.SendError(chip, message, traceback)
 		local owner, is_blocked = chip.owner, false
 		if IsValid(owner) then

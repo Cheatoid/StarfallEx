@@ -1089,8 +1089,8 @@ SF.Errormeta = {
 }
 
 SF.AutoGrowingTable = {
-    __index = function(t,k) local r=SF.AutoGrowingTable() t[k]=r return r end,
-    __call = function(t) return setmetatable({}, SF.AutoGrowingTable) end
+	__index = function(t,k) local r=SF.AutoGrowingTable() t[k]=r return r end,
+	__call = function(t) return setmetatable({}, SF.AutoGrowingTable) end
 }
 setmetatable(SF.AutoGrowingTable, SF.AutoGrowingTable)
 
@@ -1594,17 +1594,17 @@ SF.WaitForEntity = {
 }
 
 function SF.WaitForAllArgs(numarg, func)
-    local inputs = {}
-    return function(...)
-        for i=1, numarg do
-            local v = select(i, ...)
-            if v~=nil then inputs[i]=v end
-        end
-        for i=1, numarg do
-            if inputs[i]==nil then return end
-        end
-        func(unpack(inputs))
-    end
+	local inputs = {}
+	return function(...)
+		for i=1, numarg do
+			local v = select(i, ...)
+			if v~=nil then inputs[i]=v end
+		end
+		for i=1, numarg do
+			if inputs[i]==nil then return end
+		end
+		func(unpack(inputs))
+	end
 end
 
 
@@ -2222,8 +2222,8 @@ do
 		dict.__index = dict
 
 		local aClass = { name = name, super = super, static = {},
-						 __instanceDict = dict, __declaredMethods = {},
-						 subclasses = setmetatable({}, {__mode='k'})  }
+						__instanceDict = dict, __declaredMethods = {},
+						subclasses = setmetatable({}, {__mode='k'})  }
 
 		if super then
 		setmetatable(aClass.static, {
@@ -2240,7 +2240,7 @@ do
 		end
 
 		setmetatable(aClass, { __index = aClass.static, __tostring = _tostring,
-							 __call = _call, __newindex = _declareInstanceMethod })
+							__call = _call, __newindex = _declareInstanceMethod })
 
 		return aClass
 	end
@@ -2267,8 +2267,8 @@ do
 
 		isInstanceOf = function(self, aClass)
 		return istable(aClass)
-			 and istable(self)
-			 and (self.class == aClass
+			and istable(self)
+			and (self.class == aClass
 				or istable(self.class)
 				and isfunction(self.class.isSubclassOf)
 				and self.class:isSubclassOf(aClass))
