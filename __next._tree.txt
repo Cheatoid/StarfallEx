@@ -1,6 +1,6 @@
 :HL["/StarfallEx/_next/static/chunks/3253yfpsjcoh6.css","style"]
-:HL["/StarfallEx/_next/static/chunks/38c9g83j6zadw.css","style"]
+:HL["/StarfallEx/_next/static/chunks/1shr8uni5nqbl.css","style"]
 :HL["/StarfallEx/_next/static/media/GeistMono_Variable-s.p.3ms9vq719j3f8.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/StarfallEx/_next/static/media/Geist_Variable-s.p.0mrjj4bg00-he.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/StarfallEx/_next/static/chunks/095fjcd0nc8k8.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}},"staleTime":300,"buildId":"1cOqExlAzr67zCFr2Fe9j"}
+:HL["/StarfallEx/_next/static/chunks/1jbc0svq0_3y5.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}},"staleTime":300,"buildId":"hrZsR1llDXOYim2YZEuzM"}
