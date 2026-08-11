@@ -1,6 +1,8 @@
 {
   "Effect:play": "mid",
   "Entity:getBoneMatrix": "slow",
+  "Entity:getSaveTable": "mid",
+  "Entity:getTable": "mid",
   "File:close": "mid",
   "File:flush": "mid",
   "Material:setTextureURL": "mid",
