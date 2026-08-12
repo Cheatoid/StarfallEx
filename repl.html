@@ -364,6 +364,9 @@ kbd {
 .field input[type="text"], .field input[type="url"] { width: 100%; background: var(--bg-primary); border: 1px solid var(--border-soft); border-radius: 8px; padding: 11px 14px; color: var(--fg-primary); font-family: var(--font-mono); font-size: 13px; outline: none; transition: all 0.2s; }
 .field input[type="text"]:focus, .field input[type="url"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .field input[type="range"] { width: 100%; accent-color: var(--accent); height: 4px; background: var(--border-soft); border-radius: 2px; cursor: pointer; }
+.field select { width: 100%; background: var(--bg-primary); border: 1px solid var(--border-soft); border-radius: 8px; padding: 10px 12px; color: var(--fg-primary); font-family: var(--font-mono); font-size: 13px; outline: none; cursor: pointer; transition: all 0.2s; }
+.field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.field select option { background: var(--bg-secondary); color: var(--fg-primary); }
 .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
 .theme-btn { padding: 11px 12px; background: var(--bg-primary); border: 1px solid var(--border-soft); border-radius: 8px; cursor: pointer; font-family: var(--font-ui); font-size: 12px; color: var(--fg-secondary); transition: all 0.2s; display: flex; align-items: center; gap: 8px; font-weight: 500; }
 .theme-btn:hover { border-color: var(--accent); color: var(--fg-primary); }
@@ -463,6 +466,7 @@ let settings = {
   background: '',
   bgOpacity: 0.25,
   fontSize: 14,
+  backgroundSize: 'cover', // cover | stretch | fit | tile | normal
 };
 
 // DOM
@@ -1524,6 +1528,16 @@ function openSettings(focusField = null) {
           <div class="bg-preview" id="bgPreview" style="${settings.background ? `background-image:url('${escapeHtml(settings.background)}')` : ''}">${settings.background ? '' : '<span>No background set</span>'}</div>
         </div>
         <div class="field">
+          <div class="field-label"><span>Background Fit</span></div>
+          <select id="bgSizeInput">
+            <option value="cover"${settings.backgroundSize === 'cover' ? ' selected' : ''}>Cover</option>
+            <option value="stretch"${settings.backgroundSize === 'stretch' ? ' selected' : ''}>Stretch</option>
+            <option value="fit"${settings.backgroundSize === 'fit' ? ' selected' : ''}>Fit</option>
+            <option value="tile"${settings.backgroundSize === 'tile' ? ' selected' : ''}>Tile</option>
+            <option value="normal"${settings.backgroundSize === 'normal' ? ' selected' : ''}>Normal</option>
+          </select>
+        </div>
+        <div class="field">
           <div class="field-label"><span>Background Opacity</span><span class="value" id="bgOpacityValue">${Math.round(settings.bgOpacity * 100)}%</span></div>
           <input type="range" id="bgOpacityInput" min="0" max="100" value="${Math.round(settings.bgOpacity * 100)}">
         </div>
@@ -1544,8 +1558,8 @@ function openSettings(focusField = null) {
       </div>
     </div>
   `;
-  let pTheme = settings.theme, pBg = settings.background, pBgOp = settings.bgOpacity, pFont = settings.fontSize;
-  const bgInput = $('#bgInput'), bgPreview = $('#bgPreview'), bgOpInput = $('#bgOpacityInput'), bgOpVal = $('#bgOpacityValue'), fontInput = $('#fontSizeInput'), fontVal = $('#fontSizeValue');
+  let pTheme = settings.theme, pBg = settings.background, pBgOp = settings.bgOpacity, pFont = settings.fontSize, pBgSize = settings.backgroundSize || 'cover';
+  const bgInput = $('#bgInput'), bgPreview = $('#bgPreview'), bgOpInput = $('#bgOpacityInput'), bgOpVal = $('#bgOpacityValue'), fontInput = $('#fontSizeInput'), fontVal = $('#fontSizeValue'), bgSizeInput = $('#bgSizeInput');
 
   function applyPreview() {
     document.documentElement.setAttribute('data-theme', pTheme);
@@ -1553,21 +1567,43 @@ function openSettings(focusField = null) {
     document.documentElement.style.setProperty('--bg-opacity', pBgOp);
     if (pBg) { bgImageEl.style.backgroundImage = `url('${pBg}')`; bgImageEl.style.opacity = pBgOp; bgImageEl.classList.add('active'); }
     else { bgImageEl.style.backgroundImage = ''; bgImageEl.style.opacity = 0; bgImageEl.classList.remove('active'); }
+    applyBgFit(bgImageEl, pBgSize);
+    if (pBg) applyBgFit(bgPreview, pBgSize);
+    else { bgPreview.style.backgroundSize = ''; bgPreview.style.backgroundRepeat = ''; bgPreview.style.backgroundPosition = ''; }
     if (editor) { updateMonacoTheme(); editor.updateOptions({ fontSize: pFont, lineHeight: Math.round(pFont * 1.6) }); }
   }
 
   bgInput.addEventListener('input', () => { pBg = bgInput.value.trim(); bgPreview.style.backgroundImage = pBg ? `url('${pBg}')` : ''; bgPreview.innerHTML = pBg ? '' : '<span>No background set</span>'; applyPreview(); });
   bgOpInput.addEventListener('input', () => { pBgOp = bgOpInput.value / 100; bgOpVal.textContent = bgOpInput.value + '%'; applyPreview(); });
   fontInput.addEventListener('input', () => { pFont = parseInt(fontInput.value); fontVal.textContent = pFont + 'px'; applyPreview(); });
+  bgSizeInput.addEventListener('change', () => { pBgSize = bgSizeInput.value; applyPreview(); });
   $$('.theme-btn').forEach(btn => btn.addEventListener('click', () => { $$('.theme-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); pTheme = btn.dataset.theme; applyPreview(); }));
   $('#cancelBtn').addEventListener('click', () => { applySettings(); closeSettings(); });
-  $('#saveBtn').addEventListener('click', () => { settings = { theme: pTheme, background: pBg, bgOpacity: pBgOp, fontSize: pFont }; applySettings(); saveState(); closeSettings(); showToast('Settings saved', 'success'); });
-  $('#clearSettingsBtn').addEventListener('click', () => { settings = { theme: 'ocean', background: '', bgOpacity: 0.25, fontSize: 14 }; applySettings(); saveState(); closeSettings(); showToast('Settings reset', 'success'); setTimeout(() => openSettings(), 150); });
+  $('#saveBtn').addEventListener('click', () => { settings = { theme: pTheme, background: pBg, bgOpacity: pBgOp, fontSize: pFont, backgroundSize: pBgSize }; applySettings(); saveState(); closeSettings(); showToast('Settings saved', 'success'); });
+  $('#clearSettingsBtn').addEventListener('click', () => { settings = { theme: 'ocean', background: '', bgOpacity: 0.25, fontSize: 14, backgroundSize: 'cover' }; applySettings(); saveState(); closeSettings(); showToast('Settings reset', 'success'); setTimeout(() => openSettings(), 150); });
   $('#modalBackdrop').addEventListener('click', (e) => { if (e.target.id === 'modalBackdrop') { applySettings(); closeSettings(); } });
   if (focusField === 'background') setTimeout(() => bgInput.focus(), 100);
 }
 
 function closeSettings() { const backdrop = $('#modalBackdrop'); if (backdrop) { backdrop.classList.remove('visible'); modalContainer.innerHTML = ''; } }
+
+// Applies the chosen background fit mode (cover|stretch|fit|tile|normal)
+// to a given element by setting background-size, repeat, and position.
+// Inline styles are applied with "important" priority so no stylesheet
+// rule (e.g. .bg-image { background-size: cover }) can override the setting.
+function applyBgFit(el, key) {
+  if (!el) return;
+  const cfg = {
+    cover:   { size: 'cover',     repeat: 'no-repeat', position: 'center' },
+    stretch: { size: '100% 100%', repeat: 'no-repeat', position: 'center' },
+    fit:     { size: 'contain',   repeat: 'no-repeat', position: 'center' },
+    tile:    { size: 'auto',      repeat: 'repeat',    position: '0 0' },
+    normal:  { size: 'auto',      repeat: 'no-repeat', position: 'center' },
+  }[key] || { size: 'cover', repeat: 'no-repeat', position: 'center' };
+  el.style.setProperty('background-size', cfg.size, 'important');
+  el.style.setProperty('background-repeat', cfg.repeat, 'important');
+  el.style.setProperty('background-position', cfg.position, 'important');
+}
 
 function applySettings() {
   document.documentElement.setAttribute('data-theme', settings.theme);
@@ -1575,6 +1611,7 @@ function applySettings() {
   document.documentElement.style.setProperty('--bg-opacity', settings.bgOpacity);
   if (settings.background) { bgImageEl.style.backgroundImage = `url('${settings.background}')`; bgImageEl.style.opacity = settings.bgOpacity; bgImageEl.classList.add('active'); }
   else { bgImageEl.style.backgroundImage = ''; bgImageEl.style.opacity = 0; bgImageEl.classList.remove('active'); }
+  applyBgFit(bgImageEl, settings.backgroundSize);
   if (editor) { updateMonacoTheme(); editor.updateOptions({ fontSize: settings.fontSize, lineHeight: Math.round(settings.fontSize * 1.6) }); }
 }
 
