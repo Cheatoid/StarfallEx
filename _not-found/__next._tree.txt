@@ -1,3 +1,3 @@
 :HL["/StarfallEx/_next/static/chunks/3253yfpsjcoh6.css","style"]
-:HL["/StarfallEx/_next/static/chunks/1724ls_o2h6ql.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"9VndG__fvPACTwP-TnaAg"}
+:HL["/StarfallEx/_next/static/chunks/44ty17fz6r015.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"rUxqbPm3eMXFi1OhmIOQJ"}
