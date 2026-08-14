@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[18978,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js","/StarfallEx/_next/static/chunks/2hq449l4aukpz.js","/StarfallEx/_next/static/chunks/2uoa_us9d9028.js"],"DocApp"]
+2:I[18978,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js","/StarfallEx/_next/static/chunks/2hq449l4aukpz.js","/StarfallEx/_next/static/chunks/3qgomvpjenye1.js"],"DocApp"]
 3:I[97367,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
 8:I[97367,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"ViewportBoundary"]
@@ -10,18 +10,54 @@ d:I[3822,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/
 e:I[44441,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"QueryProvider"]
 f:I[39756,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"default"]
 10:I[37457,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"default"]
-11:I[77855,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"Toaster"]
-12:I[13354,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"Toaster"]
-:HL["/StarfallEx/_next/static/chunks/22h8wn3n9dgom.css","style"]
+:HL["/StarfallEx/_next/static/chunks/2kqpgfy2o5kvm.css","style"]
 :HL["/StarfallEx/_next/static/chunks/3253yfpsjcoh6.css","style"]
-:HL["/StarfallEx/_next/static/chunks/44ty17fz6r015.css","style"]
+:HL["/StarfallEx/_next/static/chunks/07mjdghye5li6.css","style"]
 7:X
-0:{"buildId":"ncM7Mv4QxUWJmemdu27vP","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","link","0",{"rel":"stylesheet","href":"/StarfallEx/_next/static/chunks/22h8wn3n9dgom.css","precedence":"next"}],["$","script","script-0",{"src":"/StarfallEx/_next/static/chunks/2hq449l4aukpz.js","async":true}],["$","script","script-1",{"src":"/StarfallEx/_next/static/chunks/2uoa_us9d9028.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Starfall - Reference Manual"}],["$","meta","1",{"name":"description","content":"Modern, searchable documentation for Starfall scripting. Browse libraries, types, hooks, enums, and directives with typo-tolerant search and live code examples."}],["$","meta","2",{"name":"author","content":"Starfall"}],["$","meta","3",{"name":"keywords","content":"Starfall,StarfallEx,Lua,GMod,Scripting API,Documentation,Hooks,Types,Directives"}],["$","meta","4",{"property":"og:title","content":"Starfall"}],["$","meta","5",{"property":"og:description","content":"Searchable scripting API reference for Starfall."}],["$","meta","6",{"property":"og:site_name","content":"Starfall"}],["$","meta","7",{"property":"og:type","content":"website"}],["$","meta","8",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","9",{"name":"twitter:title","content":"Starfall"}],["$","meta","10",{"name":"twitter:description","content":"Searchable scripting API reference for Starfall."}],["$","link","11",{"rel":"icon","href":"favicon.png"}],["$","$La","12",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@b","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/StarfallEx/_next/static/chunks/3253yfpsjcoh6.css","precedence":"next"}],["$","link","1",{"rel":"stylesheet","href":"/StarfallEx/_next/static/chunks/44ty17fz6r015.css","precedence":"next"}],["$","script","script-0",{"src":"/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","async":true}],["$","script","script-1",{"src":"/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","async":true}],["$","script","script-2",{"src":"/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js","async":true}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"id":"theme-init","dangerouslySetInnerHTML":{"__html":"$c"}}]}],["$","body",null,{"className":"geistsans_8f6d0cab-module__tZ-5eq__variable geistmono_c1bb73bf-module__l4mOPa__variable antialiased bg-background text-foreground doc-theme-transition","children":["$","$Ld",null,{"children":["$","$Le",null,{"children":[["$","$Lf",null,{"parallelRouterKey":"children","template":["$","$L10",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}],["$","$L11",null,{}],["$","$L12",null,{"position":"bottom-right","richColors":true,"closeButton":true}]]}]}]}]]}]]}],"isPartial":"$@13","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@14","rootVaryParams":null,"needsRuntimeRequest":"$@15"}
+0:{"buildId":"f9tdLzJuLU5R_KsmBqrzG","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","link","0",{"rel":"stylesheet","href":"/StarfallEx/_next/static/chunks/2kqpgfy2o5kvm.css","precedence":"next"}],["$","script","script-0",{"src":"/StarfallEx/_next/static/chunks/2hq449l4aukpz.js","async":true}],["$","script","script-1",{"src":"/StarfallEx/_next/static/chunks/3qgomvpjenye1.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Starfall - Reference Manual"}],["$","meta","1",{"name":"description","content":"Modern, searchable documentation for Starfall scripting. Browse libraries, types, hooks, enums, and directives with typo-tolerant search and live code examples."}],["$","meta","2",{"name":"author","content":"Starfall"}],["$","meta","3",{"name":"keywords","content":"Starfall,StarfallEx,Lua,GMod,Scripting API,Documentation,Hooks,Types,Directives"}],["$","meta","4",{"property":"og:title","content":"Starfall"}],["$","meta","5",{"property":"og:description","content":"Searchable scripting API reference for Starfall."}],["$","meta","6",{"property":"og:site_name","content":"Starfall"}],["$","meta","7",{"property":"og:type","content":"website"}],["$","meta","8",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","9",{"name":"twitter:title","content":"Starfall"}],["$","meta","10",{"name":"twitter:description","content":"Searchable scripting API reference for Starfall."}],["$","link","11",{"rel":"icon","href":"favicon.png"}],["$","$La","12",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@b","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/StarfallEx/_next/static/chunks/3253yfpsjcoh6.css","precedence":"next"}],["$","link","1",{"rel":"stylesheet","href":"/StarfallEx/_next/static/chunks/07mjdghye5li6.css","precedence":"next"}],["$","script","script-0",{"src":"/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","async":true}],["$","script","script-1",{"src":"/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","async":true}],["$","script","script-2",{"src":"/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js","async":true}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","script",null,{"id":"theme-init","dangerouslySetInnerHTML":{"__html":"$c"}}],["$","link",null,{"rel":"manifest","href":"/StarfallEx/manifest.json"}],["$","meta",null,{"name":"theme-color","content":"#1a1a1a"}],["$","meta",null,{"name":"apple-mobile-web-app-capable","content":"yes"}],["$","meta",null,{"name":"apple-mobile-web-app-status-bar-style","content":"black-translucent"}],["$","meta",null,{"name":"apple-mobile-web-app-title","content":"Starfall Docs"}],["$","link",null,{"rel":"apple-touch-icon","href":"/StarfallEx/icons/icon-192x192.png"}]]}],["$","body",null,{"className":"geistsans_8f6d0cab-module__tZ-5eq__variable geistmono_c1bb73bf-module__l4mOPa__variable antialiased bg-background text-foreground doc-theme-transition","children":[["$","$Ld",null,{"children":["$","$Le",null,{"children":[["$","$Lf",null,{"parallelRouterKey":"children","template":["$","$L10",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],"$L11"]}]}]],[]]}],"$L12","$L13"]}]}],"$L14"]}]]}]]}],"isPartial":"$@15","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@16","rootVaryParams":null,"needsRuntimeRequest":"$@17"}
+18:I[77855,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"Toaster"]
+19:I[13354,["/StarfallEx/_next/static/chunks/0h2qsuyze9ds1.js","/StarfallEx/_next/static/chunks/2kzu5vw8q_87u.js","/StarfallEx/_next/static/chunks/1h7vs1m1ozp41.js"],"Toaster"]
 5:null
+11:["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]
+12:["$","$L18",null,{}]
+13:["$","$L19",null,{"position":"bottom-right","richColors":true,"closeButton":true}]
+1a:T5a4,
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                  // Resolve the correct SW path based on current location
+                  // This handles Next.js basePath (e.g., /StarfallEx) in production
+                  const swPath = new URL('sw.js', window.location.href).pathname;
+                  navigator.serviceWorker.register(swPath)
+                    .then(reg => console.log('SW registered: ', reg))
+                    .catch(err => console.log('SW registration failed: ', err));
+                });
+              }
+              
+              // Handle PWA install prompt
+              let deferredPrompt;
+              window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                console.log('PWA install prompt available');
+              });
+              
+              // Expose install function for custom install buttons
+              window.installPWA = () => {
+                if (deferredPrompt) {
+                  deferredPrompt.prompt();
+                  deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                      console.log('User accepted PWA install');
+                    }
+                    deferredPrompt = null;
+                  });
+                }
+              };
+            14:["$","script",null,{"id":"pwa-register","dangerouslySetInnerHTML":{"__html":"$1a"}}]
 7:300
-15:true
+17:true
 7:C
-14:0
+16:0
 b:"$undefined"
-13:"$undefined"
+15:"$undefined"
 6:"$undefined"

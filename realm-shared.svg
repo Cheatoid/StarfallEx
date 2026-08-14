@@ -1,0 +1,12 @@
+<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full circle in orange -->
+  <circle cx="64" cy="64" r="64" fill="#f2741b" />
+  <!-- Clip for the right half -->
+  <clipPath id="rightHalf">
+    <rect x="64" y="0" width="64" height="128" />
+  </clipPath>
+  <!-- Blue half rotated left 45 degrees -->
+  <circle cx="64" cy="64" r="64" fill="#1a89c8"
+          clip-path="url(#rightHalf)"
+          transform="rotate(-45 64 64)" />
+</svg>
