@@ -106,12 +106,32 @@ local ang_meta, awrap, aunwrap = instance.Types.Angle, instance.Types.Angle.Wrap
 local vec_meta, vwrap, vunwrap = instance.Types.Vector, instance.Types.Vector.Wrap, instance.Types.Vector.Unwrap
 
 local vunwrap1
-local aunwrap1
-
 instance:AddHook("initialize", function()
 	vunwrap1 = vec_meta.QuickUnwrap1
-	aunwrap1 = ang_meta.QuickUnwrap1
 end)
+
+-- Helper to safely unwrap a vector for persistent storage.
+-- QuickUnwrap (vunwrap1) returns a shared reference that gets mutated on the next
+-- call, so it must never be stored. Instead, copy into a fresh GMod Vector when the
+-- input is already a vector, otherwise fall back to vunwrap (a fresh copy by design).
+local function unwrapVecStore(v)
+	if isvector(v) then
+		local out = Vector()
+		out:SetUnpacked(v[1], v[2], v[3])
+		return out
+	end
+	return vunwrap(v)
+end
+
+-- Same as unwrapVecStore, but for angles.
+local function unwrapAngStore(a)
+	if isangle(a) then
+		local out = Angle()
+		out:SetUnpacked(a[1], a[2], a[3])
+		return out
+	end
+	return aunwrap(a)
+end
 
 -- Effect structure
 local Effect = {}
@@ -453,7 +473,7 @@ end
 --- Sets the effect's angles
 -- @param Angle ang The angles
 function effect_methods:setAngles(ang)
-	unwrap(self).angles = aunwrap1(ang)
+	unwrap(self).angles = unwrapAngStore(ang)
 end
 
 --- Sets the effect's attachment index
@@ -530,14 +550,14 @@ end
 -- This must be a normalized vector for networking purposes
 -- @param Vector normal The normalized direction vector of the effect
 function effect_methods:setNormal(normal)
-	unwrap(self).normal = vunwrap1(normal)
+	unwrap(self).normal = unwrapVecStore(normal)
 end
 
 --- Sets the effect's origin
 -- Limited to world bounds (+-16386 on every axis), and has horrible networking precision (17 bit float per component).
 -- @param Vector origin The origin of the effect
 function effect_methods:setOrigin(origin)
-	unwrap(self).origin = vunwrap1(origin)
+	unwrap(self).origin = unwrapVecStore(origin)
 end
 
 --- Sets the effect's radius
@@ -558,7 +578,7 @@ end
 -- Limited to world bounds (+-16386 on every axis), and has horrible networking precision (17 bit float per component).
 -- @param Vector start The start position of the effect
 function effect_methods:setStart(start)
-	unwrap(self).start = vunwrap1(start)
+	unwrap(self).start = unwrapVecStore(start)
 end
 
 --- Sets the effect's surface property
