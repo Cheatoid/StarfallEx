@@ -2,5 +2,5 @@
 :HL["/StarfallEx/_next/static/chunks/3lxtyh1z2dvun.css","style"]
 :HL["/StarfallEx/_next/static/media/GeistMono_Variable-s.p.3ms9vq719j3f8.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/StarfallEx/_next/static/media/Geist_Variable-s.p.0mrjj4bg00-he.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/StarfallEx/_next/static/chunks/2kqpgfy2o5kvm.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}},"staleTime":300,"buildId":"EkHh1SHsUXnaXvVJgtdVf"}
+:HL["/StarfallEx/_next/static/chunks/1s8gly58ycydn.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}},"staleTime":300,"buildId":"ZLZh3pTYdglhFoDlzkBwW"}
