@@ -1,0 +1,44 @@
+<script src="lzma-d.js"></script>
+
+<style>
+    #dropZone {
+        width: 400px;
+        height: 200px;
+        border: 2px dashed #888;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+    }
+</style>
+
+<div id="dropZone">Drop a .lzma file here</div>
+
+<script>
+    const dropZone = document.getElementById("dropZone");
+
+    dropZone.addEventListener("dragover", function (e) {
+        e.preventDefault();
+    });
+
+dropZone.addEventListener("drop", async function (e) {
+    e.preventDefault();
+
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+
+    const data = new Uint8Array(await file.arrayBuffer());
+
+    try {
+        const bytes = decompressGModLZMA(data);
+
+        console.log("Decompressed bytes:", bytes);
+        console.log(
+            "As text:",
+            new TextDecoder().decode(new Uint8Array(bytes))
+        );
+    } catch (err) {
+        console.error("GMod LZMA decompression failed:", err);
+    }
+});
+</script>
